@@ -2,12 +2,17 @@ import express, { Request, Response, NextFunction, Application } from 'express'
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 
+import db from "./config/database"
+
 import productRoute from "./router/productRoute"
+import userRoute from "./router/userRoute"
+import { QueryError } from 'mysql2'
 
 const PORT = 8000
 
 const app: Application = express()
 
+// ============ middleware global =====================
 app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("time : ", Date.now())
     next()
@@ -21,15 +26,40 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+// ============ middleware global =====================
 
-app.use("/api/product", (req: Request, res: Response, next: NextFunction) => {
-    console.log("route level middleware")
+// ============= router =========================
+app.use("/api/products", (req: Request, res: Response, next: NextFunction) => {
+    console.log("middleware LEVEL ROUTER")
     next()
 }, productRoute)
 
+app.use("/api/users", (req: Request, res: Response, next: NextFunction) => {
+    console.log("middleware LEVEL USER ROUTER 1")
+    next()
+}, (req: Request, res: Response, next: NextFunction) => {
+    console.log("middleware LEVEL USER ROUTER 2")
+    next()
+}, userRoute)
+// ============= router ==========================
+
 app.get("/", (req: Request, res: Response) => {
-    return res.send({
-        hello: "world"
+    interface IStudent {
+        id: number
+        name: string
+        marks: number
+        class: string
+    }
+
+    db.query("select * from students", (err: QueryError, result: IStudent[]) => {
+        if (err) {
+            return res.status(500).send(err)
+        }
+
+        return res.status(200).send({
+            message: "success",
+            data: result
+        })
     })
 })
 
@@ -60,6 +90,13 @@ app.delete("/:id", (req: Request, res: Response) => {
     return res.send({
         massage: "data " + id + " sucessful delete "
     })
+})
+
+db.getConnection((err, connection) => {
+    if (err) {
+        return console.log(err)
+    }
+    console.log("Success Connection", connection.threadId)
 })
 
 app.listen(PORT, () => {
