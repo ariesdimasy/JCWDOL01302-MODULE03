@@ -1,3 +1,5 @@
+# JAWABAN Exercise 5 - SQL Syntax
+
 ```sql
 -- Create db name as purwadhika*student, purwadhika_schedule, purwadhika_branch
 create database purwadhika_student;
