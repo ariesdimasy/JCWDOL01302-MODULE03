@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gray: #4a5568
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+}
+
+.container { 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar {
+  background-color: white;
+  height: 85px;
+  display: flex;
+  width: 100%;
+  padding: 0 10%;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
+  position: fixed;
+}
+
+.navbar .logo h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar .menu {
+
+  display: flex;
+  gap: 30px;
+}
+
+.hero {
+  padding: 85px 10% 0 10%;
+  height: 470px;
+  display: flex;
+  align-items: center;
+  background-color: #FBFBFB;
+}
+
+.hero .header-text {
+
+  width: 50%;
+
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.hero .header-text h1 {
+  width: 380px;
+  font-size: 50px;
+  margin: 20px auto;
+
+}
+
+.hero .header-text p {
+  width: 380px;
+  font-size: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  color: var(--gray);
+}
+
+.hero img {
+  width: 50%;
+  height: 323px;
+}
+
+.description {
+  height: 243px;
+  margin: 40px 0;
+  padding: 0 10%;
+  display: flex;
+
+}
+
+.description>.desc-text {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 40px 60px 40px 40px;
+  border-left: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.description>.desc-text h1 {
+  margin-bottom: 20px;
+}
+
+.description>.desc-text p {
+  margin-bottom: 40px;
+
+}
+
+.description>.desc-text .readmore {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description>.desc-text .readmore a {
+  text-decoration: none;
+}
+
+.description>img {
+  object-fit: cover;
+}
