@@ -55,7 +55,7 @@ export async function createPost(req: Request, res: Response) {
 
         const { user_id, title, content } = req.body
 
-        const post = await prisma.post.create({
+        const postData = await prisma.post.create({
             data: {
                 userId: user_id,
                 title: title,
@@ -65,7 +65,7 @@ export async function createPost(req: Request, res: Response) {
 
         return res.send({
             message: "success",
-            data: post
+            data: postData
         })
 
     } catch (err) {
