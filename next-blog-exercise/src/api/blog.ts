@@ -9,7 +9,7 @@ const content_type = 'post'
 
 export function getDataPost() {
     //return axios.get(`https://cdn.contentful.com/spaces/${space_id}/environments/master/entries?access_token=${access_token}&content_type=${content_type}`)
-    return axios.get(base_url + "/posts")
+    return axios.get(base_url + "/posts",)
 }
 
 export function getDetailDataPost(id: string) {
