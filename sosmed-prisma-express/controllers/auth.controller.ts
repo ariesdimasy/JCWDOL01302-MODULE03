@@ -78,7 +78,7 @@ export const login = async (req: Request, res: Response) => {
 
         if (!user) {
             return res.status(404).send({
-                message: "invalid email or password ",
+                message: "invalid email or password 1",
             })
         }
 
@@ -86,7 +86,7 @@ export const login = async (req: Request, res: Response) => {
 
         if (!isValidPassword) {
             return res.status(400).send({
-                message: JSON.stringify("bad request"),
+                message: JSON.stringify("invalid email or password 2"),
             })
         }
 
